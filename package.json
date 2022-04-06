@@ -1,0 +1,48 @@
+{
+    "name": "cdr-auth",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "webpack": "cross-env NODE_ENV=development webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "dev": "cross-env NODE_ENV=development webpack --watch --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build",
+        "lint": "vue-cli-service lint"
+    },
+    "dependencies": {
+        "axios": "^0.26.1",
+        "core-js": "^3.8.3",
+        "vue": "^3.2.13",
+        "vue-router": "^4.0.3",
+        "vuex": "^4.0.0"
+    },
+    "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^5.18.0",
+        "@typescript-eslint/parser": "^5.18.0",
+        "@vue/cli-plugin-babel": "~5.0.0",
+        "@vue/cli-plugin-eslint": "~5.0.0",
+        "@vue/cli-plugin-router": "~5.0.0",
+        "@vue/cli-plugin-typescript": "~5.0.0",
+        "@vue/cli-plugin-vuex": "~5.0.0",
+        "@vue/cli-service": "~5.0.0",
+        "@vue/eslint-config-typescript": "^9.1.0",
+        "browser-sync": "^2.27.9",
+        "browser-sync-webpack-plugin": "^2.3.0",
+        "cross-env": "^7.0.3",
+        "eslint": "^7.32.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-config-standard": "^16.0.3",
+        "eslint-plugin-import": "^2.26.0",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-prettier": "^4.0.0",
+        "eslint-plugin-promise": "^5.2.0",
+        "eslint-plugin-vue": "^8.6.0",
+        "laravel-mix": "^6.0.43",
+        "prettier": "2.6.2",
+        "resolve-url-loader": "^5.0.0",
+        "sass": "^1.49.11",
+        "sass-loader": "^12.6.0",
+        "typescript": "~4.5.5",
+        "vue-loader": "^17.0.0"
+    }
+}

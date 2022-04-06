@@ -1,0 +1,19 @@
+.sortable_wordpress_gallery {
+  padding: 0;
+}
+
+.sortable_wordpress_gallery li.attachment {
+  width: 8.813rem;
+  height: 8.813rem;
+
+}
+
+.sortable_wordpress_gallery{
+  display: block;
+}
+
+.sortable_wordpress_gallery:after{
+  display: table;
+  content: '';
+  clear: both;
+}
