@@ -2,23 +2,20 @@
     /**
      * Footer template
      *
-     * @package cdr
+     * @package sjp
      */
 ?>
-</div>
-<footer class="site-footer pt-5 pb-2">
+
+<footer class="site-footer">
   <?php
-      get_template_part( 'template-parts/footer/content', 'widgets' );
-      get_template_part( 'template-parts/footer/content', 'copyright' );
+      get_template_part( 'template-parts/footer/main/content', 'main' );
+      get_template_part( 'template-parts/footer/bottom/content', 'bottom' );
+      get_template_part( 'template-parts/utilities/content', 'floating' );
+      get_template_part( 'template-parts/utilities/content', 'cookies' );
   ?>
 </footer>
-
-<?php
-
-    wp_footer();
-?>
-
-
+<?php wp_footer();?>
+</div>
 </body>
 
 </html>

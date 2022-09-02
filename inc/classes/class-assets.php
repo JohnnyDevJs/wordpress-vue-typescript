@@ -2,12 +2,12 @@
 /**
  * Enqueue theme assets
  *
- * @package cdr
+ * @package sjp
  */
 
-namespace CDR_THEME\Inc;
+namespace SJP_THEME\Inc;
 
-use CDR_THEME\Inc\Traits\Singleton;
+use SJP_THEME\Inc\Traits\Singleton;
 
 class Assets {
     use Singleton;
@@ -26,19 +26,32 @@ class Assets {
         add_action( 'wp_enqueue_scripts', [$this, 'register_styles'] );
         add_action( 'wp_enqueue_scripts', [$this, 'register_scripts'] );
         add_action( 'admin_enqueue_scripts', [$this, 'register_admin_styles'] );
+        add_action( 'admin_enqueue_scripts', [$this, 'register_admin_scripts'] );
     }
 
     public function register_styles() {
         // Register styles.
-        wp_register_style( 'app', CDR_PUBLIC_CSS_URI . '/app.css', [], filemtime( CDR_PUBLIC_CSS_DIR_PATH . '/app.css' ), 'all' );
+        wp_register_style( 'app', SJP_PUBLIC_CSS_URI . '/app.css', [], filemtime( SJP_PUBLIC_CSS_DIR_PATH . '/app.css' ), 'all' );
 
         // Enqueue Styles.
         wp_enqueue_style( 'app' );
     }
 
     public function register_scripts() {
+        global $wp_query;
+
         // Register scripts.
-        wp_register_script( 'app', CDR_PUBLIC_JS_URI . '/app.js', ['jquery'], filemtime( CDR_PUBLIC_JS_DIR_PATH . '/app.js' ), true );
+        wp_register_script( 'app', SJP_PUBLIC_JS_URI . '/app.js', ['jquery'], filemtime( SJP_PUBLIC_JS_DIR_PATH . '/app.js' ), true );
+
+        // Localize the script with new data
+        wp_localize_script( 'app', 'load_portfolio', [
+            'ajaxurl'      => admin_url( 'admin-ajax.php' ),
+            'posts'        => json_encode( $wp_query->query_vars ),
+            'current_page' => get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1,
+            'max_page'     => $wp_query->max_num_pages
+        ] );
+
+        wp_localize_script( 'app', 'send_contact_form', ['ajaxurl' => admin_url( 'admin-ajax.php' )] );
 
         // Enqueue Scripts.
         wp_enqueue_script( 'app' );
@@ -48,12 +61,21 @@ class Assets {
     public function register_admin_styles() {
 
         // Register Admin Styles
-        wp_register_style( 'bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css', NULL, '5.0.2', 'all' );
-        wp_register_style( 'iframe', CDR_ADMIN_CSS_DIR_PATH . '/iframe.css', NULL, '1.0', 'all' );
+        wp_register_style( 'portfolio', SJP_ADMIN_CSS_DIR_PATH . '/portfolio.css', null, '1.0', 'all' );
 
         // Enqueue Admin Styles
-        wp_enqueue_style( 'bootstrap' );
-        wp_enqueue_style( 'iframe' );
+        wp_enqueue_style( 'portfolio' );
+
+    }
+
+    public function register_admin_scripts() {
+
+        // Register Admin Scripts
+        wp_register_script( 'gallery', SJP_ADMIN_JS_DIR_PATH . '/portfolio.js', ['jquery'], '0.0.1', true );
+        wp_enqueue_media();
+
+        // Enqueue Admin Scripts
+        wp_enqueue_script( 'gallery' );
     }
 
 }

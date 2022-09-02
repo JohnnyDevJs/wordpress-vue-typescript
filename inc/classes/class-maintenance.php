@@ -2,12 +2,12 @@
 /**
  * Maintenance
  *
- * @package cdr
+ * @package sjp
  */
 
-namespace CDR_THEME\Inc;
+namespace SJP_THEME\Inc;
 
-use CDR_THEME\Inc\Traits\Singleton;
+use SJP_THEME\Inc\Traits\Singleton;
 
 class Maintenance {
 
@@ -28,7 +28,7 @@ class Maintenance {
 
         $mods = get_theme_mods();
 
-        $active = isset( $mods['CDR_field_maintenance_active'] ) ? $mods['CDR_field_maintenance_active'] : '';
+        $active = isset( $mods['sjp_field_maintenance_active'] ) ? $mods['sjp_field_maintenance_active'] : '';
 
         if ( true === $active ) {
 

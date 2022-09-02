@@ -1,48 +1,42 @@
 {
-    "name": "cdr-auth",
-    "version": "0.1.0",
-    "private": true,
-    "scripts": {
-        "webpack": "cross-env NODE_ENV=development webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "dev": "cross-env NODE_ENV=development webpack --watch --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "serve": "vue-cli-service serve",
-        "build": "vue-cli-service build",
-        "lint": "vue-cli-service lint"
-    },
-    "dependencies": {
-        "axios": "^0.26.1",
-        "core-js": "^3.8.3",
-        "vue": "^3.2.13",
-        "vue-router": "^4.0.3",
-        "vuex": "^4.0.0"
-    },
-    "devDependencies": {
-        "@typescript-eslint/eslint-plugin": "^5.18.0",
-        "@typescript-eslint/parser": "^5.18.0",
-        "@vue/cli-plugin-babel": "~5.0.0",
-        "@vue/cli-plugin-eslint": "~5.0.0",
-        "@vue/cli-plugin-router": "~5.0.0",
-        "@vue/cli-plugin-typescript": "~5.0.0",
-        "@vue/cli-plugin-vuex": "~5.0.0",
-        "@vue/cli-service": "~5.0.0",
-        "@vue/eslint-config-typescript": "^9.1.0",
-        "browser-sync": "^2.27.9",
-        "browser-sync-webpack-plugin": "^2.3.0",
-        "cross-env": "^7.0.3",
-        "eslint": "^7.32.0",
-        "eslint-config-prettier": "^8.5.0",
-        "eslint-config-standard": "^16.0.3",
-        "eslint-plugin-import": "^2.26.0",
-        "eslint-plugin-node": "^11.1.0",
-        "eslint-plugin-prettier": "^4.0.0",
-        "eslint-plugin-promise": "^5.2.0",
-        "eslint-plugin-vue": "^8.6.0",
-        "laravel-mix": "^6.0.43",
-        "prettier": "2.6.2",
-        "resolve-url-loader": "^5.0.0",
-        "sass": "^1.49.11",
-        "sass-loader": "^12.6.0",
-        "typescript": "~4.5.5",
-        "vue-loader": "^17.0.0"
-    }
+  "name": "sjp",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack --watch --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "prod": "npm run production",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --config=node_modules/laravel-mix/setup/webpack.config.js"
+  },
+  "devDependencies": {
+    "@popperjs/core": "^2.11.6",
+    "@wordpress/eslint-plugin": "^12.4.0",
+    "browser-sync": "^2.27.9",
+    "browser-sync-webpack-plugin": "^2.3.0",
+    "cross-env": "^7.0.3",
+    "dotenv-webpack": "^7.1.0",
+    "eslint": "^8.23.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.5",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-promise": "^6.0.1",
+    "install": "^0.13.0",
+    "laravel-mix": "^6.0.43",
+    "prettier": "^2.7.1",
+    "resolve-url-loader": "^5.0.0",
+    "sass": "^1.49.11",
+    "sass-loader": "^12.6.0"
+  },
+  "dependencies": {
+    "@fancyapps/fancybox": "^3.5.7",
+    "@fortawesome/fontawesome-free": "^6.1.1",
+    "bootstrap": "5.2.0-beta1",
+    "inputmask": "^5.0.7",
+    "jquery": "^3.6.1",
+    "jquery-mask-plugin": "^1.14.16",
+    "jquery-validation": "^1.19.5",
+    "lightbox2": "^2.11.3",
+    "simplelightbox": "^2.10.3"
+  }
 }

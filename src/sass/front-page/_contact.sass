@@ -1,0 +1,63 @@
+#fale-conosco
+  padding-top: 8rem
+  padding-bottom: 4rem
+
+  .contact-info
+    li
+      display: flex
+      align-items: center
+
+      svg
+        margin-right: .5rem
+        color: $dark-red
+
+      &:last-child
+        align-items: flex-start
+
+      a
+        &.email
+          text-decoration: underline
+
+    li,
+    li a
+      color: $gray !important
+
+    li + li
+      margin-top: .7rem
+
+  form
+    background-color: $gray-300
+
+    .form-control
+      border: 1px solid $white
+
+      &:focus,
+      &:active
+        border:
+          color: $light-black
+        box-shadow: none
+
+      &.is-invalid
+        border-color: $light-red
+
+    button.btn
+      &:hover,
+      &:focus,
+      &:active
+        background-color: $dark-red
+        border: 1px solid $dark-red
+
+  .area-message
+    opacity: 0
+    visibility: hidden
+    height: 0
+
+    +transition(all .4s)
+    transform: translateY(5rem)
+
+    &.show
+      opacity: 1
+      visibility: visible
+      height: auto
+
+      transform: translateY(0)

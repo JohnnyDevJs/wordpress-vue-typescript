@@ -1,0 +1,51 @@
+#nav-mobile
+  background-color: $light-black
+  z-index: 99
+
+  opacity: 0
+  visibility: hidden
+  +transition(all .4s)
+  transform: translateX(-5rem)
+
+  display: flex
+  align-items: center
+  justify-content: center
+  flex-direction: column
+
+  &.show
+    opacity: 1
+    visibility: visible
+    transform: translateX(0)
+
+  .navbar-collapse
+    flex-basis: 0 !important
+    flex-grow: 0 !important
+
+  .collapse
+    margin-right: 0 !important
+
+    display: flex !important
+    justify-content: center !important
+
+    li
+      margin-left: 0 !important
+      justify-content: center !important
+
+    li + li
+      margin-top: 1.5rem
+
+  #social
+    display: flex !important
+    margin-top: 3rem
+
+  #close
+    top: 1rem
+    right: 1rem
+    background-color: transparent
+    padding: 0
+    margin: 0
+    border: none
+
+    svg
+      color: $light-red
+      font-size: 2rem

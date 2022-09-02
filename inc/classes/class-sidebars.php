@@ -2,12 +2,12 @@
 /**
  * Theme Sidebars.
  *
- * @package cdr
+ * @package sjp
  */
 
-namespace CDR_THEME\Inc;
+namespace SJP_THEME\Inc;
 
-use CDR_THEME\Inc\Traits\Singleton;
+use SJP_THEME\Inc\Traits\Singleton;
 
 /**
  * Class Assets
@@ -34,7 +34,6 @@ class Sidebars {
          * Actions
          */
         add_action( 'widgets_init', [$this, 'register_sidebars'] );
-        add_action( 'widgets_init', [$this, 'register_cults_widget'] );
         add_action( 'widgets_init', [$this, 'register_address_widget'] );
         add_action( 'widgets_init', [$this, 'register_networks_widget'] );
 
@@ -49,7 +48,7 @@ class Sidebars {
 
         register_sidebar(
             [
-                'name'          => esc_html__( 'Footer One', 'iro' ),
+                'name'          => esc_html__( 'Footer One', 'sjp' ),
                 'id'            => 'sidebar-1',
                 'description'   => '',
                 'before_widget' => '<div id="%1$s" class="widget widget-sidebar %2$s">',
@@ -61,7 +60,7 @@ class Sidebars {
 
         register_sidebar(
             [
-                'name'          => esc_html__( 'Footer Two', 'iro' ),
+                'name'          => esc_html__( 'Footer Two', 'sjp' ),
                 'id'            => 'sidebar-2',
                 'description'   => '',
                 'before_widget' => '<div id="%1$s" class="widget widget-footer cell column %2$s">',
@@ -73,7 +72,7 @@ class Sidebars {
 
         register_sidebar(
             [
-                'name'          => esc_html__( 'Footer Three', 'iro' ),
+                'name'          => esc_html__( 'Footer Three', 'sjp' ),
                 'id'            => 'sidebar-3',
                 'description'   => '',
                 'before_widget' => '<div id="%1$s" class="widget widget-footer cell column %2$s">',
@@ -85,7 +84,7 @@ class Sidebars {
 
         register_sidebar(
             [
-                'name'          => esc_html__( 'Footer Four', 'iro' ),
+                'name'          => esc_html__( 'Footer Four', 'sjp' ),
                 'id'            => 'sidebar-4',
                 'description'   => '',
                 'before_widget' => '<div id="%1$s" class="widget widget-footer cell column %2$s">',
@@ -97,7 +96,7 @@ class Sidebars {
 
         register_sidebar(
             [
-                'name'          => esc_html__( 'Sidebar', 'iro' ),
+                'name'          => esc_html__( 'Sidebar', 'sjp' ),
                 'id'            => 'sidebar-5',
                 'description'   => '',
                 'before_widget' => '<div id="%1$s" class="widget widget-sidebar card shadow border-0 p-4 %2$s">',
@@ -110,15 +109,15 @@ class Sidebars {
     }
 
     public function register_cults_widget() {
-        register_widget( 'CDR_THEME\Inc\Cults_Widget' );
+        register_widget( 'SJP_THEME\Inc\Cults_Widget' );
     }
 
     public function register_networks_widget() {
-        register_widget( 'CDR_THEME\Inc\Networks_Widget' );
+        register_widget( 'SJP_THEME\Inc\Networks_Widget' );
     }
 
     public function register_address_widget() {
-        register_widget( 'CDR_THEME\Inc\Address_Widget' );
+        register_widget( 'SJP_THEME\Inc\Address_Widget' );
     }
 
 }

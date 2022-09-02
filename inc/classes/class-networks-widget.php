@@ -2,12 +2,12 @@
     /**
      * Networks Widget
      *
-     * @package cdr
+     * @package sjp
      */
 
-    namespace CDR_THEME\Inc;
+    namespace SJP_THEME\Inc;
 
-    use CDR_THEME\Inc\Traits\Singleton;
+    use SJP_THEME\Inc\Traits\Singleton;
     use WP_Widget;
 
     class Networks_Widget extends WP_Widget {
@@ -21,7 +21,7 @@
             parent::__construct(
                 'networks_widget', // Base ID
                 'Redes Sociais', // Name
-                ['description' => __( 'Redes Sociais Widget', 'Iro' )]// Args
+                ['description' => __( 'Redes Sociais Widget', 'sjp' )]// Args
             );
         }
 
@@ -46,9 +46,9 @@
 
             $mods = get_theme_mods();
 
-            $facebook = isset( $mods['CDR_field_facebook'] ) ? $mods['CDR_field_facebook'] : '';
-            $instagram = isset( $mods['CDR_field_instagram'] ) ? $mods['CDR_field_instagram'] : '';
-            $youtube = isset( $mods['CDR_field_youtube'] ) ? $mods['CDR_field_youtube'] : '';
+            $facebook = isset( $mods['sjp_field_facebook'] ) ? $mods['sjp_field_facebook'] : '';
+            $instagram = isset( $mods['sjp_field_instagram'] ) ? $mods['sjp_field_instagram'] : '';
+            $youtube = isset( $mods['sjp_field_youtube'] ) ? $mods['sjp_field_youtube'] : '';
 
             $html = '';
             $html .= '<ul class="list-networks list-unstyled p-0 d-flex">';
@@ -77,12 +77,12 @@
             if ( isset( $instance['title'] ) ) {
                 $title = $instance['title'];
             } else {
-                $title = __( 'Redes Sociais', 'Iro' );
+                $title = __( 'Redes Sociais', 'sjp' );
             }
 
         ?>
 <p>
-  <label for="<?php echo $this->get_field_name( 'title' ); ?>"><?php _e( 'Title:', 'Iro' );?></label>
+  <label for="<?php echo $this->get_field_name( 'title' ); ?>"><?php _e( 'Title:', 'sjp' );?></label>
   <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>"
     name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 </p>

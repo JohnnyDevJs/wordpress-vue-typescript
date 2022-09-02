@@ -1,9 +1,14 @@
 /* eslint-disable prettier/prettier */
 const mix = require('laravel-mix')
 
-mix.ts('./src/main.ts', 'public/js/app.js').vue()
+mix.js('./src/js/app.js', 'public/js/app.js')
 mix.sass('./src/sass/app.sass', 'public/css/app.css')
 mix.browserSync({
-    files: ['./**/*.php', './**/*.ts', './**/*.vue'],
-    proxy: 'localhost:2022'
+  files: ['./**/*.php', './**/*.sass', './**/*.js'],
+  proxy: 'localhost:8022'
+})
+mix.webpackConfig({
+  watchOptions: {
+    ignored: /node_modules/
+  }
 })

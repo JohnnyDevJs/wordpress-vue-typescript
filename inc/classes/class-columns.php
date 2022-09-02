@@ -2,12 +2,12 @@
 /**
  * Register Columns
  *
- * @package cdr
+ * @package sjp
  */
 
-namespace CDR_THEME\Inc;
+namespace SJP_THEME\Inc;
 
-use CDR_THEME\Inc\Traits\Singleton;
+use SJP_THEME\Inc\Traits\Singleton;
 
 class Columns {
 

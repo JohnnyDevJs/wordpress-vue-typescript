@@ -1,0 +1,12 @@
+=background-gradient( $deg, $color_1, $percent_1, $color_2, $percent_2 )
+  background: $color_1
+  background: -moz-radial-gradient(#{$deg}, $color_1 $percent_1, $color_2 $percent_2)
+  background: -webkit-radial-gradient(#{$deg}, $color_1 $percent_1, $color_2 $percent_2)
+  background: radial-gradient(#{$deg}, $color_1 $percent_1, $color_2 $percent_2)
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#{$color_1}",endColorstr="#{$color_2}",GradientType=1)
+
+=transition( $options... )
+  -webkit-transition: $options
+  -moz-transition: $options
+  -o-transition: $options
+  transition: $options

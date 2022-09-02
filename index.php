@@ -2,14 +2,21 @@
     /**
      * Main template file.
      *
-     * @package cdr
+     * @package sjp
      */
 
     get_header();
 
 ?>
 
-<div id="app"></div>
+<section id="page">
+  <div class="container">
+    <?php the_content();?>
+  </div>
+  </div>
+</section>
+
+
 
 <?php
 get_footer();

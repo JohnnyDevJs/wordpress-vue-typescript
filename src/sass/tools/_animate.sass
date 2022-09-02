@@ -1,0 +1,49 @@
+$effects: fadeInUp, fadeInLeft
+
+@each $effect, $count in $effects
+
+  @for $i from 1 through 9
+    .animate-delay-#{$i}
+      animation-delay: #{'0.'}#{$i}#{'s'}
+
+  @for $i from 1 through 9
+    .animate-#{$effect}-#{$i}
+      animation: #{'0.'}#{$i}#{'s'} #{$effect} ease
+
+    @keyframes #{$effect}
+      0%
+        opacity: 0
+        visibility: hidden
+
+        @if $effect == 'fadeInUp'
+          transform: translateY(1rem)
+        @else
+          transform: translateX(1rem)
+
+      100%
+        opacity: 1
+        visibility: visible
+
+        @if $effect == 'fadeInUp'
+          transform: translateY(0)
+        @else
+          transform: translateX(0)
+
+$effects_infinite: bounce
+
+@each $effect_infinite in $effects_infinite
+  .animate-infinite-#{$effect_infinite}
+    -moz-animation: #{$effect_infinite} 2s infinite
+    -webkit-animation: #{$effect_infinite} 2s infinite
+    animation: #{$effect_infinite} 2s infinite
+
+    @keyframes #{$effect_infinite}
+      0%, 20%, 50%, 80%, 100% 
+        transform: translateY(0)
+    
+      40% 
+        transform: translateY(-30px)
+
+      60% 
+        transform: translateY(-15px)
+

@@ -1,0 +1,26 @@
+#consent-cookies
+  position: fixed
+  bottom: 0
+  left: 0
+  right: 0
+  transition: opacity 1s
+  z-index: 1222
+
+  a
+    &:hover
+      color: $light-red
+
+  span,
+  .text-link
+    font-size: 0.875rem
+
+  #accept
+    &:hover,
+    &:active,
+    &:focus
+      background-color: $light-black
+      border: 1px solid $light-black
+
+#consent-cookies.hidden
+  opacity: 0
+  z-index: -1
