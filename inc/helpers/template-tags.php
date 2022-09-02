@@ -2,104 +2,153 @@
 /**
  * Custom template tags for the theme.
  *
- * @package cdr
+ * @package cm
  */
 
 /**
- * Gets the thumbnail with Lazy Load.
- * Should be called in the WordPress Loop.
- *
- * @param  int|null $post_id               Post ID.
- * @param  string   $size                  The registered image size.
- * @param  array    $additional_attributes Additional attributes.
- * @return string
- */
-function get_the_post_custom_thumbnail( $post_id, $size = 'featured-thumbnail', $additional_attributes = [] ) {
-    $custom_thumbnail = '';
-
-    if ( null === $post_id ) {
-        $post_id = get_the_ID();
-    }
-
-    if ( has_post_thumbnail( $post_id ) ) {
-        $default_attributes = [
-            'loading' => 'lazy'
-        ];
-
-        $attributes = array_merge( $additional_attributes, $default_attributes );
-
-        $custom_thumbnail = wp_get_attachment_image(
-            get_post_thumbnail_id( $post_id ),
-            $size,
-            false,
-            $attributes
-        );
-    }
-
-    return $custom_thumbnail;
-}
-
-/**
- * Renders Custom Thumbnail with Lazy Load.
- *
- * @param int    $post_id               Post ID.
- * @param string $size                  The registered image size.
- * @param array  $additional_attributes Additional attributes.
- */
-function the_post_custom_thumbnail( $post_id, $size = 'featured-thumbnail', $additional_attributes = [] ) {
-    echo get_the_post_custom_thumbnail( $post_id, $size, $additional_attributes );
-}
-
-/**
- * Iro Copyright.
- *
- * @return void
+ * cm copyright
  */
 
-function cdr_copyright() {
+function cm_copyright() {
 
     $copyright = sprintf(
         '&copy; ' . get_bloginfo( 'name' ) . ' - ' . get_bloginfo( 'description' ) . ' ' . date( 'Y' ) . '. Todos os Direitos Reservados.'
     );
 
-    return $copyright;
+    echo $copyright;
+
+}
+
+function cm_breadcrumb() {
+
+    $classes = get_body_class();
+
+    $item = '';
+
+    if ( in_array( 'single-post', $classes ) ) {
+        global $post;
+        $item = '<li class="breadcrumb-item"><a href="' . home_url( 'blog' ) . '">Blog</a></li>';
+    }
+
+    if ( in_array( 'page-child', $classes ) ) {
+        global $post;
+        $item = '<li class="breadcrumb-item">Sobre</li>';
+    }
+
+    if ( in_array( 'single-photos', $classes ) ) {
+        $item = '<li class="breadcrumb-item"><a href="' . home_url( 'fotos' ) . '">Fotos</a></li>';
+    }
+
+    if ( in_array( 'blog', $classes ) ) {
+        $title = 'Blog';
+        $item = '';
+
+    } else {
+        $title = get_the_title();
+    }
+
+    if ( is_page( 'quem-sou' ) ) {
+        $output = '
+      <div class="breadcrumbs mb-4">
+          <nav class="navbar navbar-expand-lg navbar-light px-3 ">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item active"><a href="' . home_url() . '">Início</a></li>
+                ' . $item . '
+                <li class="breadcrumb-item">' . $title . '</li>
+              </ol>
+            </nav>
+          </nav>
+        </div>';
+    } else {
+        $output = '
+      <div class="breadcrumbs">
+        <div class="container mb-4">
+          <div class="row">
+            <div class="col-12">
+              <nav class="navbar navbar-expand-lg navbar-light px-3 ">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item active"><a href="' . home_url() . '">Início</a></li>
+                    ' . $item . '
+                    <li class="breadcrumb-item">' . $title . '</li>
+                  </ol>
+                </nav>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>';
+    }
+
+    return $output;
+}
+
+/**
+ * cm meta.
+ */
+
+function cm_meta() {
+
+    $categories = get_the_category();
+
+    if ( !  empty( $categories ) ) {
+        $category = esc_html( $categories[0]->name );
+    }
+
+    $html = '
+      <div class="meta d-flex flex-column">
+        <h5>
+          <span class="badge badge-info bg-info">' . $category . '</span>
+        </h5>
+        <time class="text-uppercase">' . get_the_time( 'j \d\e F \d\e Y' ) . '</time>
+      </div>';
+
+    echo $html;
+}
+
+/**
+ * cm socials.
+ */
+
+function cm_socials( ...$fields ) {
+
+    $mods = get_theme_mods();
+
+    $html = '';
+
+    foreach ( $fields as $field ) {
+        $html .= isset( $mods['cm_field_' . $field] ) ? '<li><a class="d-flex align-items-center text-info justify-content-center" href="' . $mods['cm_field_' . $field] . '" target="_blank"><i data-feather="' . $field . '"></i></a></li>' : '';
+    }
+
+    echo $html;
 
 }
 
 /**
- * Iro Breadcrumb.
- *
- * @return void
+ * cm clear posts or post types.
  */
 
-function cdr_breadcrumb( $main_page, $page_parent = '' ) {
+function clear_posts_from_db() {
 
-    $home_link = get_home_url();
+    global $wpdb;
 
-    if ( !  empty( $page_parent ) ):
-        $page_parent = '<li class="breadcrumb-item d-flex align-items-center" aria-current="page">' . $page_parent . '</li>';
-    endif;
+    $wpdb->query( "DELETE FROM wp_posts WHERE post_type='schedule'" );
+    $wpdb->query( "DELETE FROM wp_postmeta WHERE post_id NOT IN (SELECT id FROM wp_posts);" );
+    $wpdb->query( "DELETE FROM wp_term_relationships WHERE object_id NOT IN (SELECT id FROM wp_posts)" );
 
-    $breadcrumb = '
-    <nav class="page-breadcrumb d-flex align-items-center justify-content-center shadow bg-white text-center py-1 px-3 d-flex position-absolute">
-      <ol class="breadcrumb mb-0">
-        <li class="breadcrumb-item"><a href="' . $home_link . '">Home</a></li>
-        ' . $page_parent . '
-        <li class="breadcrumb-item active d-flex align-items-center" aria-current="page">' . $main_page . '</li>
-      </ol>
-    </nav>';
-
-    return $breadcrumb;
 }
 
-function cdr_authentication() {
+//clear_posts_from_db();
 
-    $is_user_logged_in = is_user_logged_in();
-    $home_url = home_url();
+function cm_pages_id( $title ) {
 
-    if ( $is_user_logged_in ) {
-        wp_redirect( $home_url );
-        exit();
-    }
+    $classes = get_body_class();
+
+    if ( in_array( 'blog', $classes ) ):
+        $page = get_page_by_title( $title );
+
+        return ' page-id-' . $page->ID;
+    endif;
 
 }

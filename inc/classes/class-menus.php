@@ -2,12 +2,12 @@
 /**
  * Register Menus
  *
- * @package cdr
+ * @package cm
  */
 
-namespace CDR_THEME\Inc;
+namespace CM_THEME\Inc;
 
-use CDR_THEME\Inc\Traits\Singleton;
+use CM_THEME\Inc\Traits\Singleton;
 
 class Menus {
 
@@ -29,9 +29,8 @@ class Menus {
 
     public function register_menus() {
         register_nav_menus( [
-            'iro-header-menu'        => esc_html__( 'Header Menu', 'iro' ),
-            'iro-header-mobile-menu' => esc_html__( 'Header Mobile Menu', 'iro' ),
-            'iro-footer-menu'        => esc_html__( 'Footer Menu', 'iro' )
+            'cm-header-menu'  => esc_html__( 'Header Menu', 'sjp' ),
+            'sjp-footer-menu' => esc_html__( 'Footer Menu', 'sjp' )
         ] );
     }
 

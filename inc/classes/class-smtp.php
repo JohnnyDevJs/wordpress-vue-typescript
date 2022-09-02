@@ -2,12 +2,12 @@
 /**
  * SMTP Types
  *
- * @package cdr
+ * @package cm
  */
 
-namespace CDR_THEME\Inc;
+namespace CM_THEME\Inc;
 
-use CDR_THEME\Inc\Traits\Singleton;
+use CM_THEME\Inc\Traits\Singleton;
 
 class SMTP {
 
@@ -26,18 +26,19 @@ class SMTP {
          * Actions.
          */
         add_filter( 'phpmailer_init', [$this, 'setup_smtp_mail'] );
-
+        add_action( 'wp_mail_failed', [$this, 'action_wp_mail_failed', 10, 1] );
     }
 
     public function setup_smtp_mail( $phpmailer ) {
         $phpmailer->isSMTP();
-        $phpmailer->Host = 'email-ssl.com.br';
+        $phpmailer->Host = 'smtp.mailtrap.io';
         $phpmailer->SMTPAuth = true;
-        $phpmailer->Port = 465;
-        $phpmailer->SMTPSecure = 'ssl';
-        $phpmailer->Username = 'iro@iro.com.br';
-        $phpmailer->Password = 'Clinica@IRO3512';
-        $phpmailer->From = 'iro@iro.com.br';
-        $phpmailer->FromName = 'IRO Campinas';
+        $phpmailer->Port = 2525;
+        $phpmailer->Username = 'cf84de4c0f8c37';
+        $phpmailer->Password = 'c9a8099cb19eba';
+    }
+
+    public function action_wp_mail_failed( $error ) {
+        wp_die( "<pre>" . print_r( $error, true ) . "</pre>" );
     }
 }

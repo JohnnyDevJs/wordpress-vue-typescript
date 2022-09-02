@@ -2,12 +2,12 @@
 /**
  * Mimes Types
  *
- * @package cdr
+ * @package cm
  */
 
-namespace CDR_THEME\Inc;
+namespace CM_THEME\Inc;
 
-use CDR_THEME\Inc\Traits\Singleton;
+use CM_THEME\Inc\Traits\Singleton;
 
 class Mimes {
 

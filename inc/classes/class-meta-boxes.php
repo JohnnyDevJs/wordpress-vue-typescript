@@ -2,12 +2,12 @@
 /**
  * Register Meta Boxes
  *
- * @package cdr
+ * @package cm
  */
 
-namespace CDR_THEME\Inc;
+namespace CM_THEME\Inc;
 
-use CDR_THEME\Inc\Traits\Singleton;
+use CM_THEME\Inc\Traits\Singleton;
 
 /**
  * Class Meta_Boxes
@@ -15,6 +15,17 @@ use CDR_THEME\Inc\Traits\Singleton;
 class Meta_Boxes {
 
     use Singleton;
+
+    protected $gallery_defaults = [
+        'class'    => 'Sortable_WordPress_Gallery',
+        'id'       => '',
+        'title'    => '',
+        'context'  => '',
+        'priority' => ''];
+
+    protected $galleries = [];
+    protected $loaded_galleries = [];
+    public static $alreadyEnqueued = false;
 
     protected function __construct() {
 
@@ -27,8 +38,9 @@ class Meta_Boxes {
         /**
          * Actions.
          */
-        add_action( 'add_meta_boxes', [$this, 'add_custom_meta_box'] );
+        add_action( 'add_meta_boxes', [$this, 'add_custom_meta_box'], 10, 2 );
         add_action( 'save_post', [$this, 'save_post_meta_data'] );
+        add_filter( 'the_content', [$this, 'render'] );
 
     }
 
@@ -40,21 +52,25 @@ class Meta_Boxes {
     public function add_custom_meta_box() {
 
         $screens = [
-            'unique_ID' => ['hero-page-options', 'franchise-page-options', 'modal-page-options'],
-            'callback'  => ['custom_hero_meta_box_html', 'custom_franchise_meta_box_html', 'custom_modal_meta_box_html'],
-            'post_type' => ['hero', 'franchise', 'modal'],
-            'box_title' => ['Opções da hero', 'Opções de Franquia', 'Opções de Modal']
+            'unique_ID' => ['shortable-gallery-page-options', 'schedule-page-options'],
+            'box_title' => ['Galeria', 'Horário'],
+            'callback'  => ['custom_shortable_gallery_meta_box_html', 'custom_schedule_meta_box_html'],
+            'post_type' => ['photos', 'schedule'],
+            'context'   => ['normal', 'side'],
+            'priority'  => ['high', 'high']
         ];
 
         for ( $i = 0; $i < sizeof( $screens['unique_ID'] ); $i++ ) {
 
             add_meta_box(
                 $screens['unique_ID'][$i], // Unique ID
-                __( $screens['box_title'][$i], 'Iro' ), // Box title
+                __( $screens['box_title'][$i], 'sjp' ), // Box title
                 [$this, $screens['callback'][$i]], // Content callback, must be of type callable
                 $screens['post_type'][$i], // Post type
-                'normal' // context
+                $screens['context'][$i], // context
+                $screens['priority'][$i]// priority
             );
+
         }
 
     }
@@ -66,110 +82,58 @@ class Meta_Boxes {
      * @return void
      */
 
-    public function custom_hero_meta_box_html( $post ) {
+    public function custom_shortable_gallery_meta_box_html( $post ) {
 
-        $url = get_post_meta( $post->ID, '_url', true );
+        $sortable_gallery = get_post_meta( $post->ID, '_' . $post->ID . '_sortable_wordpress_gallery', true );
 
-        /**
-         * Use nonce for verification.
-         * This will create a hidden input field with id and name as
-         * 'hero_meta_box_nonce' and unique nonce input value.
-         */
-        wp_nonce_field( plugin_basename( __FILE__ ), 'meta_box_nonce' );
+        echo '<div class="table">';
 
-        $output = '';
+        echo '<ul id="' . $post->ID . '_sortable_wordpress_gallery" class="sortable_wordpress_gallery">';
 
-        // URL
-        $output .= '<div class="col-6 mb-3">';
-        $output .= '<label for="iro-url-field" class="form-label">' . esc_html( 'URL', 'iro' ) . '</label>';
-        $output .= '<input type="text" class="form-control" id="iro-url-field" name="CDR_url_field" placeholder="Insira a URL" value="' . esc_html( $url, 'iro' ) . '" />';
-        $output .= '</div>';
+        $gallery = explode( ",", $sortable_gallery );
 
-        echo $output;
+        if ( count( $gallery ) > 0 && $gallery[0] != '' ):
 
-    }
+            foreach ( $gallery as $attachment_id ):
 
-    public function custom_franchise_meta_box_html( $post ) {
+                $output = '<li tabindex="0" role="checkbox" aria-label="' . get_the_title( $attachment_id ) . '" aria-checked="true"
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																												  data-id="' . $attachment_id . '" class="attachment save-ready selected details">';
+                $output .= '<div class="attachment-preview js--select-attachment type-image subtype-jpeg portrait">';
+                $output .= '<div class="thumbnail">';
+                $output .= '<div class="centered">';
 
-        $manager = get_post_meta( $post->ID, '_manager', true );
-        $cro = get_post_meta( $post->ID, '_cro', true );
-        $phone = get_post_meta( $post->ID, '_phone', true );
+                $output .= '<img src="' . wp_get_attachment_thumb_url( $attachment_id ) . '" draggable="false" alt="">';
+                $output .= '</div>';
+                $output .= '</div>';
+                $output .= '</div>';
+                $output .= '<button type="button" data-gallery="#' . $post->ID . '_sortable_wordpress_gallery" class="button-link check remove-sortable-wordpress-gallery-image" tabindex="0"><span class="media-modal-icon"></span><span class="screen-reader-text">Deselect</span></button>';
+                $output .= '</li>';
+                echo $output;
+            endforeach;
 
-        /**
-         * Use nonce for verification.
-         * This will create a hidden input field with id and name as
-         * 'hero_meta_box_nonce' and unique nonce input value.
-         */
-        wp_nonce_field( plugin_basename( __FILE__ ), 'meta_box_nonce' );
+        endif;
 
-        $output = '';
+        echo '</ul>';
 
-        // Tecnichal
-        $output .= '<div class="row">';
-        $output .= '<div class="col-4 mb-3">';
-        $output .= '<label for="iro-manager-field" class="form-label">' . esc_html( 'Responsável Técnico', 'iro' ) . '</label>';
-        $output .= '<input type="text" class="form-control" id="iro-manager-field" name="CDR_manager_field" placeholder="Insira o responsável técnico" value="' . esc_html( $manager, 'iro' ) . '" />';
-        $output .= '</div>';
+        echo '<input type="hidden" id="' . $post->ID . '_sortable_wordpress_gallery_input" name="_' . $post->ID . '_sortable_wordpress_gallery" value="' . $sortable_gallery . '" />';
+        echo '<button type="button" class="button button-primary add-sortable-wordpress-gallery" data-gallery="#' . $post->ID . '_sortable_wordpress_gallery">Adicionar Imagens</button>';
 
-        $output .= '<div class="col-2 mb-3">';
-        $output .= '<label for="iro-cro-field" class="form-label">' . esc_html( 'CRO', 'iro' ) . '</label>';
-        $output .= '<input type="text" class="form-control" id="iro-cro-field" name="CDR_cro_field" placeholder="Insira o CRO" value="' . esc_html( $cro, 'iro' ) . '" />';
-        $output .= '</div>';
-        $output .= '</div>';
-
-        // phone
-        $output .= '<div class="col-6 mb-3">';
-        $output .= '<label for="iro-phone-field" class="form-label">' . esc_html( 'Telefone', 'iro' ) . '</label>';
-        $output .= '<input type="tel" class="form-control" id="iro-phone-field" name="CDR_phone_field" placeholder="Insira o telefone" value="' . esc_html( $phone, 'iro' ) . '" />';
-        $output .= '</div>';
-
-        echo $output;
+        echo '</div>';
 
     }
 
-    public function custom_modal_meta_box_html( $post ) {
+    public function custom_schedule_meta_box_html( $post ) {
 
-        $title_one = get_post_meta( $post->ID, '_title_one', true );
-        $title_two = get_post_meta( $post->ID, '_title_two', true );
-        $url_one = get_post_meta( $post->ID, '_url_one', true );
-        $url_two = get_post_meta( $post->ID, '_url_two', true );
+        $time_schedule = get_post_meta( $post->ID, '_time_schedule', true );
 
         /**
          * Use nonce for verification.
          * This will create a hidden input field with id and name as
-         * 'hero_meta_box_nonce' and unique nonce input value.
+         * 'schedule_meta_box_nonce' and unique nonce input value.
          */
-        wp_nonce_field( plugin_basename( __FILE__ ), 'meta_box_nonce' );
 
-        $output = '';
-
-        // Buttons Titles and URLs
-        $output .= '<div class="row">';
-        $output .= '<div class="col-4">';
-        $output .= '<label for="iro-title-one-field" class="form-label">' . esc_html( '1. Título do botão', 'iro' ) . '</label>';
-        $output .= '<input type="text" class="form-control" id="iro-title-one-field" name="CDR_title_one_field" placeholder="Insira a URL" value="' . esc_html( $title_one, 'iro' ) . '" />';
-        $output .= '</div>';
-
-        $output .= '<div class="col-4 mb-3">';
-        $output .= '<label for="iro-url-one-field" class="form-label">' . esc_html( '1. URL', 'iro' ) . '</label>';
-        $output .= '<input type="text" class="form-control" id="iro-url-one-field" name="CDR_url_one_field" placeholder="Insira a URL" value="' . esc_html( $url_one, 'iro' ) . '" />';
-        $output .= '</div>';
-        $output .= '</div>';
-
-        $output .= '<div class="row">';
-        $output .= '<div class="col-4">';
-        $output .= '<label for="iro-title-two-field" class="form-label">' . esc_html( '2. Título do botão', 'iro' ) . '</label>';
-        $output .= '<input type="text" class="form-control" id="iro-title-two-field" name="CDR_title_two_field" placeholder="Insira a URL" value="' . esc_html( $title_two, 'iro' ) . '" />';
-        $output .= '</div>';
-
-        $output .= '<div class="col-4 mb-3">';
-        $output .= '<label for="iro-url-two-field" class="form-label">' . esc_html( '2. URL', 'iro' ) . '</label>';
-        $output .= '<input type="text" class="form-control" id="iro-url-two-field" name="CDR_url_two_field" placeholder="Insira a URL" value="' . esc_html( $url_two, 'iro' ) . '" />';
-        $output .= '</div>';
-        $output .= '</div>';
-
+        $output = '<input type="time" id="cm-time-schedule-field" name="cm_time_schedule" value="' . $time_schedule . '" />';
         echo $output;
-
     }
 
     /**
@@ -186,108 +150,66 @@ class Meta_Boxes {
          * Check if the current user is authorized
          */
 
+        // Schedule
+        $t_schedule = sanitize_text_field( $_POST['cm_time_schedule'] );
+
+        if ( $t_schedule ):
+            update_post_meta( $post_id, '_time_schedule', $t_schedule );
+        endif;
+
+        // Gallery
+
+        $gallery = sanitize_text_field( $_POST['_' . $post_id . '_sortable_wordpress_gallery'] );
+
+        if ( $gallery ):
+            update_post_meta( $post_id, '_' . $post_id . '_sortable_wordpress_gallery', $gallery );
+        endif;
+
         if ( !  current_user_can( 'edit_post', $post_id ) ) {
             return;
         }
 
-        /**
-         * Check if the nonce value we received is the same we created.
-         */
+    }
 
-        if ( !  isset( $_POST['meta_box_nonce'] ) ||
-            !  wp_verify_nonce( $_POST['meta_box_nonce'], plugin_basename( __FILE__ ) )
-        ) {
-            return;
+    public function render( $content ) {
+
+        global $post;
+
+        $post_types = apply_filters( 'sortable_wordpress_gallery_post_types', ['portfolio'] );
+        $post_types = apply_filters( 'sortable_wordpress_gallery_' . $post->ID . '_post_types', $post_types );
+        $this_post_type = get_post_type( $post );
+
+        if ( in_array( $this_post_type, $post_types ) ) {
+
+            $gallery_images = get_post_meta( $post->ID, '_' . $post->ID . '_sortable_wordpress_gallery', true );
+
+            if ( $gallery_images != '' ) {
+
+                $gallery_images_array = explode( ',', $gallery_images );
+
+                foreach ( $gallery_images_array as $image_id ) {
+
+                    $cover_large = wp_get_attachment_image_src( $image_id, 'full' );
+                    $html = wp_get_attachment_image_src( $image_id, 'wp_rancho_thumb_portfolio' );
+
+                    if ( $html == '' ) {
+                        continue;
+                    }
+
+                    $content .= '<figure class="thumb thumb-hidden">';
+                    $content .= '<a href="' . $cover_large[0] . '" class="fancybox" target="_blank">';
+                    $content .= '<img class="img-responsive" src="' . $html[0] . '">';
+                    $content .= '<div class="overlay-thumb transition"></div>';
+                    $content .= '</a>';
+                    $content .= '</figure>';
+
+                }
+
+            }
+
         }
 
-        if ( array_key_exists( 'CDR_url_field', $_POST ) ) {
-
-            $CDR_url_field = sanitize_text_field( $_POST['CDR_url_field'] );
-
-            update_post_meta(
-                $post_id,
-                '_url',
-                $CDR_url_field
-            );
-        }
-
-        if ( array_key_exists( 'CDR_manager_field', $_POST ) ) {
-
-            $CDR_manager_field = sanitize_text_field( $_POST['CDR_manager_field'] );
-
-            update_post_meta(
-                $post_id,
-                '_manager',
-                $CDR_manager_field
-            );
-        }
-
-        if ( array_key_exists( 'CDR_cro_field', $_POST ) ) {
-
-            $CDR_cro_field = sanitize_text_field( $_POST['CDR_cro_field'] );
-
-            update_post_meta(
-                $post_id,
-                '_cro',
-                $CDR_cro_field
-            );
-        }
-
-        if ( array_key_exists( 'CDR_phone_field', $_POST ) ) {
-
-            $CDR_phone_field = sanitize_text_field( $_POST['CDR_phone_field'] );
-
-            update_post_meta(
-                $post_id,
-                '_phone',
-                $CDR_phone_field
-            );
-        }
-
-        if ( array_key_exists( 'CDR_url_one_field', $_POST ) ) {
-
-            $CDR_url_one_field = sanitize_text_field( $_POST['CDR_url_one_field'] );
-
-            update_post_meta(
-                $post_id,
-                '_url_one',
-                $CDR_url_one_field
-            );
-        }
-
-        if ( array_key_exists( 'CDR_title_one_field', $_POST ) ) {
-
-            $CDR_title_one_field = sanitize_text_field( $_POST['CDR_title_one_field'] );
-
-            update_post_meta(
-                $post_id,
-                '_title_one',
-                $CDR_title_one_field
-            );
-        }
-
-        if ( array_key_exists( 'CDR_url_two_field', $_POST ) ) {
-
-            $CDR_url_two_field = sanitize_text_field( $_POST['CDR_url_two_field'] );
-
-            update_post_meta(
-                $post_id,
-                '_url_two',
-                $CDR_url_two_field
-            );
-        }
-
-        if ( array_key_exists( 'CDR_title_two_field', $_POST ) ) {
-
-            $CDR_title_two_field = sanitize_text_field( $_POST['CDR_title_two_field'] );
-
-            update_post_meta(
-                $post_id,
-                '_title_two',
-                $CDR_title_two_field
-            );
-        }
-
+        return $content;
     }
 
 }

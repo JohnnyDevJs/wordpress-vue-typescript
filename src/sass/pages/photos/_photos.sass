@@ -1,0 +1,31 @@
+.page-fotos
+  .album-photo
+    height: 31vh
+    border-radius: 0.625rem
+
+    a
+      border-radius: 0.625rem
+
+      +transition(all .4s)
+
+      &::before
+        content: ''
+        width: 100%
+        height: 100%
+        background-color: rgba($blue-900, .4)
+        position: absolute
+        z-index: 1
+        +transition(all .4s)
+
+      img
+        +transition(all .4s)
+
+      &:hover
+        img
+          transform: scale(1.1)
+
+        &::before
+          background-color: rgba($info, .6)
+
+    figcaption
+      z-index: 1

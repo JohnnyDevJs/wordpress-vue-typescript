@@ -1,0 +1,62 @@
+#photos
+  h1
+    color: $blue-900
+
+  .carousel
+    figure.album-photo
+      width: 25%
+      height: 20rem
+
+      a
+        &::before
+          content: ''
+          position: absolute
+          width: 100%
+          height: 100%
+          z-index: 1
+
+        img
+          +transition(all, .4s)
+
+        figcaption
+          z-index: 1
+
+        &:hover
+          img
+            transform: scale(1.1)
+
+    figure.album-photo
+      a
+        &::before
+          background-color: rgba($white, .2)
+
+    // figure.album-photo.is-selected
+    //   a
+    //     &::before
+    //       background-color: rgba($info, .6)
+
+  .flickity-button
+    background-color: transparent
+
+    &:focus
+      box-shadow: none
+
+  .flickity-prev-next-button
+    .flickity-button-icon
+      width: 75%
+      height: 75%
+
+      path
+        fill: $white
+
+  .flickity-page-dots
+    .flickity-page-dot
+      background-color: $bg-grayish
+      width: 0.75rem
+      height: 0.75rem
+
+      &:focus
+        box-shadow: none
+
+    .flickity-page-dot.is-selected
+      background-color: $primary

@@ -1,0 +1,24 @@
+=background-gradient( $deg, $color_1, $percent_1, $color_2, $percent_2 )
+  background: $color_1
+  background: -moz-linear-gradient(#{$deg}, $color_1 $percent_1, $color_2 $percent_2)
+  background: -webkit-linear-gradient(#{$deg}, $color_1 $percent_1, $color_2 $percent_2)
+  background: linear-gradient(#{$deg}, $color_1 $percent_1, $color_2 $percent_2)
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#{$color_1}",endColorstr="#{$color_2}",GradientType=1)
+
+=transition( $options... )
+  -webkit-transition: $options
+  -moz-transition: $options
+  -o-transition: $options
+  transition: $options
+
+=translate( $style, $origin )
+  -webkit-transform: translate#{$style}#{'('$origin')'}
+  -moz-transform: translate#{$style}#{'('$origin')'}
+  -o-transform: translate#{$style}#{'('$origin')'}
+  transform: translate#{$style}#{'('$origin')'}
+
+=rotate( $deg )
+  -webkit-transform: rotate#{'('$deg')'}
+  -moz-transform: rotate#{'('$deg')'}
+  -o-transform: rotate#{'('$deg')'}
+  transform: rotate#{'('$deg')'}

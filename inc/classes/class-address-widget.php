@@ -2,12 +2,12 @@
     /**
      * Address Widget
      *
-     * @package cdr
+     * @package cm
      */
 
-    namespace CDR_THEME\Inc;
+    namespace CM_THEME\Inc;
 
-    use CDR_THEME\Inc\Traits\Singleton;
+    use CM_THEME\Inc\Traits\Singleton;
     use WP_Widget;
 
     class Address_Widget extends WP_Widget {
@@ -21,7 +21,7 @@
             parent::__construct(
                 'Address_widget', // Base ID
                 'Endereço', // Name
-                ['description' => __( 'Endereço Widget', 'Iro' )]// Args
+                ['description' => __( 'Endereço Widget', 'sjp' )]// Args
             );
         }
 
@@ -46,11 +46,11 @@
 
             $mods = get_theme_mods();
 
-            $address = isset( $mods['CDR_field_address'] ) ? $mods['CDR_field_address'] : '';
+            $address = isset( $mods['sjp_field_address'] ) ? $mods['sjp_field_address'] : '';
 
             $html = '';
 
-            $html .= '<h4 class="Iro-address text-center mb-0">';
+            $html .= '<h4 class="sjp-address text-center mb-0">';
             $html .= $address;
             $html .= '</h4>';
 
@@ -71,12 +71,12 @@
             if ( isset( $instance['title'] ) ) {
                 $title = $instance['title'];
             } else {
-                $title = __( 'Endereço', 'Iro' );
+                $title = __( 'Endereço', 'sjp' );
             }
 
         ?>
 <p>
-  <label for="<?php echo $this->get_field_name( 'title' ); ?>"><?php _e( 'Title:', 'Iro' );?></label>
+  <label for="<?php echo $this->get_field_name( 'title' ); ?>"><?php _e( 'Title:', 'sjp' );?></label>
   <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>"
     name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 </p>

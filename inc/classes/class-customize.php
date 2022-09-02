@@ -2,12 +2,12 @@
 /**
  * Theme Customize
  *
- * @package cdr
+ * @package cm
  */
 
-namespace CDR_THEME\Inc;
+namespace CM_THEME\Inc;
 
-use CDR_THEME\Inc\Traits\Singleton;
+use CM_THEME\Inc\Traits\Singleton;
 use WP_Customize_Image_Control;
 use WP_Customize_Upload_Control;
 
@@ -41,171 +41,110 @@ class Customize {
 
     public function add_settings( $wp_customize ) {
 
-        // Logos
-        $wp_customize->add_setting( 'CDR_field_dark_logo', [
+        // Banner
+        $wp_customize->add_setting( 'cm_field_banner_logo_ub', [
             'default' => ''
         ] );
-
-        // Exams
-        $wp_customize->add_setting( 'CDR_exams_field_description', [
-            'default' => ''
-        ] );
-
-        $wp_customize->add_setting( 'CDR_exams_field_exam_results', [
-            'default' => ''
-        ] );
-
-        $wp_customize->add_setting( 'CDR_exams_field_exams_offered', [
-            'default' => ''
-        ] );
-
-        $wp_customize->add_setting( 'CDR_exams_field_image', [
-            'default' => ''
-        ] );
-
-        // Fanchises
-        $wp_customize->add_setting( 'CDR_franchises_field_title', [
-            'default' => ''
-        ] );
-
-        $wp_customize->add_setting( 'CDR_franchises_field_description', [
-            'default' => ''
-        ] );
-
-        $wp_customize->add_setting( 'CDR_franchises_field_know_more', [
-            'default' => ''
-        ] );
-
-        $wp_customize->add_setting( 'CDR_franchises_field_image', [
-            'default' => ''
-        ] );
-
-        // Reports
-        $wp_customize->add_setting( 'CDR_reports_field_title', [
-            'default' => ''
-        ] );
-
-        $wp_customize->add_setting( 'CDR_reports_field_description', [
-            'default' => ''
-        ] );
-
-        $wp_customize->add_setting( 'CDR_reports_field_know_more', [
-            'default' => ''
-        ] );
-
-        $wp_customize->add_setting( 'CDR_reports_field_image', [
-            'default' => ''
-        ] );
-
-        // Where
-        $wp_customize->add_setting( 'CDR_field_map_iframe', [
-            'default' => ''
-        ] );
-
-        // Informations
-        $wp_customize->add_setting( 'CDR_field_phone', [
-            'default' => ''
-        ] );
-
-        $wp_customize->add_setting( 'CDR_field_address', [
-            'default' => ''
-        ] );
-
-        $wp_customize->add_setting( 'CDR_field_email', [
-            'default' => ''
-        ] );
-
-        $wp_customize->add_setting( 'CDR_field_privacy_email', [
-            'default' => ''
-        ] );
-
-        // Week and Weekend
-        $options = [
-            'week',
-            'weekend'
-        ];
-
-        foreach ( $options as $option ) {
-            $wp_customize->add_setting( 'CDR_field_' . $option . '_attendance', [
-                'default' => ''
-            ] );
-
-            $wp_customize->add_setting( 'CDR_field_' . $option . '_x_ray', [
-                'default' => ''
-            ] );
-
-            $wp_customize->add_setting( 'CDR_field_' . $option . '_documentations', [
-                'default' => ''
-            ] );
-        }
 
         // Networks
-        $wp_customize->add_setting( 'CDR_field_whatsapp', [
+        $wp_customize->add_setting( 'cm_field_whatsapp', [
             'default' => ''
         ] );
 
-        $wp_customize->add_setting( 'CDR_field_facebook', [
+        $wp_customize->add_setting( 'cm_field_facebook', [
             'default' => ''
         ] );
 
-        $wp_customize->add_setting( 'CDR_field_instagram', [
+        $wp_customize->add_setting( 'cm_field_instagram', [
             'default' => ''
         ] );
 
-        $wp_customize->add_setting( 'CDR_field_youtube', [
+        $wp_customize->add_setting( 'cm_field_youtube', [
             'default' => ''
         ] );
 
-        // Franchise
-        $wp_customize->add_setting( 'CDR_field_contract', [
+        $wp_customize->add_setting( 'cm_field_twitter', [
+            'default' => ''
+        ] );
+
+        // Options
+        $wp_customize->add_setting( 'cm_field_options_image', [
+            'default' => ''
+        ] );
+
+        // Materials
+        $wp_customize->add_setting( 'cm_field_materials_multimedia', [
+            'default' => ''
+        ] );
+
+        $wp_customize->add_setting( 'cm_field_materials_image', [
+            'default' => ''
+        ] );
+
+        $wp_customize->add_setting( 'cm_field_materials_mockup', [
+            'default' => ''
+        ] );
+
+        $wp_customize->add_setting( 'cm_field_materials_videos', [
+            'default' => ''
+        ] );
+
+        $wp_customize->add_setting( 'cm_field_materials_audios', [
             'default' => ''
         ] );
 
         // About
-        $wp_customize->add_setting( 'CDR_field_about_description', [
+        $wp_customize->add_setting( 'cm_field_about_image', [
             'default' => ''
         ] );
 
-        $wp_customize->add_setting( 'CDR_field_about_image', [
+        $wp_customize->add_setting( 'cm_field_about_background', [
             'default' => ''
         ] );
 
-        $wp_customize->add_setting( 'CDR_field_about_url', [
+        // Pages
+        $wp_customize->add_setting( 'cm_field_pages_title_image', [
             'default' => ''
         ] );
 
-        // SEO
-        $wp_customize->add_setting( 'CDR_field_seo_google_analytics', [
+        // Downloads
+        $wp_customize->add_setting( 'cm_field_downloads_sticker', [
             'default' => ''
         ] );
 
-        $wp_customize->add_setting( 'CDR_field_seo_pixel_facebook', [
+        $wp_customize->add_setting( 'cm_field_downloads_informativo_front', [
             'default' => ''
         ] );
 
-        // Cookies
-        $wp_customize->add_setting( 'CDR_field_cookies_active', [
-            'default' => false
-        ] );
-
-        $wp_customize->add_setting( 'CDR_field_cookies_message', [
+        $wp_customize->add_setting( 'cm_field_downloads_informativo_verse', [
             'default' => ''
         ] );
 
-        $wp_customize->add_setting( 'CDR_field_cookies_url', [
+        $wp_customize->add_setting( 'cm_field_downloads_oficial_photo', [
             'default' => ''
         ] );
 
-        // Maintenance
-        $wp_customize->add_setting( 'CDR_field_maintenance_active', [
-            'default' => false
-        ] );
-
-        $wp_customize->add_setting( 'CDR_field_maintenance_title', [
+        $wp_customize->add_setting( 'cm_field_downloads_photo_oficial_two', [
             'default' => ''
         ] );
 
-        $wp_customize->add_setting( 'CDR_field_maintenance_description', [
+        $wp_customize->add_setting( 'cm_field_downloads_logo_one', [
+            'default' => ''
+        ] );
+
+        $wp_customize->add_setting( 'cm_field_downloads_logo_one', [
+            'default' => ''
+        ] );
+
+        $wp_customize->add_setting( 'cm_field_downloads_logo_two', [
+            'default' => ''
+        ] );
+
+        $wp_customize->add_setting( 'cm_field_downloads_logo_horizontal_shadow', [
+            'default' => ''
+        ] );
+
+        $wp_customize->add_setting( 'cm_field_downloads_logo_vertical_shadow', [
             'default' => ''
         ] );
 
@@ -213,96 +152,53 @@ class Customize {
 
     public function add_sections( $wp_customize ) {
 
-        // Exams
-        $wp_customize->add_section( 'CDR_exams_section', [
-            'title'    => __( 'Seção exames', 'iro' ),
-            'priority' => 30,
-            'panel'    => 'iro'
+        // Banners
+        $wp_customize->add_section( 'cm_banners_section', [
+            'title'    => __( 'Banners', 'cm' ),
+            'priority' => 31,
+            'panel'    => 'cm'
         ] );
-
-        // Franchises
-        $wp_customize->add_section( 'CDR_franchises_section', [
-            'title'    => __( 'Seção Franquias', 'iro' ),
-            'priority' => 30,
-            'panel'    => 'iro'
-        ] );
-
-        // Reports
-        $wp_customize->add_section( 'CDR_reports_section', [
-            'title'    => __( 'Seção Laudos', 'iro' ),
-            'priority' => 30,
-            'panel'    => 'iro'
-        ] );
-
-        // About
-        $wp_customize->add_section( 'CDR_about_section', [
-            'title'    => __( 'Seção Quem Somos', 'iro' ),
-            'priority' => 30,
-            'panel'    => 'iro'
-        ] );
-
-        // Where
-        $wp_customize->add_section( 'CDR_where_section', [
-            'title'    => __( 'Onde estamos?', 'iro' ),
-            'priority' => 30,
-            'panel'    => 'iro'
-        ] );
-
-        // Informations
-        $wp_customize->add_section( 'CDR_informations_section', [
-            'title'    => __( 'Informações', 'iro' ),
-            'priority' => 30,
-            'panel'    => 'iro'
-        ] );
-
-        // Week and Weekend
-        $options = [
-            'week'    => 'Horários semais',
-            'weekend' => 'Horários fim de semana'
-        ];
-
-        foreach ( $options as $key => $option ) {
-
-            $wp_customize->add_section( 'CDR_' . $key . '_section', [
-                'title'    => __( $option, 'iro' ),
-                'priority' => 30,
-                'panel'    => 'iro'
-            ] );
-        }
 
         // Networks
-        $wp_customize->add_section( 'CDR_networks_section', [
-            'title'    => __( 'Redes Sociais', 'iro' ),
+        $wp_customize->add_section( 'cm_socials_section', [
+            'title'    => __( 'Redes Sociais', 'cm' ),
             'priority' => 31,
-            'panel'    => 'iro'
+            'panel'    => 'cm'
         ] );
 
-        // Franchise
-        $wp_customize->add_section( 'CDR_franchise_section', [
-            'title'    => __( 'Franquias', 'iro' ),
+        // Options
+        $wp_customize->add_section( 'cm_options_section', [
+            'title'    => __( 'Sessão opções', 'cm' ),
             'priority' => 31,
-            'panel'    => 'iro'
+            'panel'    => 'cm'
         ] );
 
-        // SEO
-        $wp_customize->add_section( 'CDR_seo_section', [
-            'title'    => __( 'SEO', 'iro' ),
-            'priority' => 30,
-            'panel'    => 'iro'
+        // Materials
+        $wp_customize->add_section( 'cm_materials_section', [
+            'title'    => __( 'Sessão materiais', 'cm' ),
+            'priority' => 31,
+            'panel'    => 'cm'
         ] );
 
-        // Cookies
-        $wp_customize->add_section( 'CDR_cookies_section', [
-            'title'    => __( 'Cookies', 'iro' ),
-            'priority' => 30,
-            'panel'    => 'iro'
+        // Options
+        $wp_customize->add_section( 'cm_about_section', [
+            'title'    => __( 'Página quem sou', 'cm' ),
+            'priority' => 31,
+            'panel'    => 'cm'
         ] );
 
-        // Cookies
-        $wp_customize->add_section( 'CDR_maintenance_section', [
-            'title'    => __( 'Manutenção', 'iro' ),
-            'priority' => 30,
-            'panel'    => 'iro'
+        // Pages
+        $wp_customize->add_section( 'cm_pages_section', [
+            'title'    => __( 'Páginas', 'cm' ),
+            'priority' => 31,
+            'panel'    => 'cm'
+        ] );
+
+        // Pages
+        $wp_customize->add_section( 'cm_downloads_section', [
+            'title'    => __( 'Downloads', 'cm' ),
+            'priority' => 31,
+            'panel'    => 'cm'
         ] );
 
     }
@@ -311,8 +207,8 @@ class Customize {
 
         $wp_customize->get_section( 'title_tagline' )->title = 'Geral';
 
-        $wp_customize->add_panel( 'iro', [
-            'title'    => __( 'Configurações IRO', 'iro' ),
+        $wp_customize->add_panel( 'cm', [
+            'title'    => __( 'Configurações Cristina Mel', 'cm' ),
             'priority' => 160
         ] );
 
@@ -320,366 +216,248 @@ class Customize {
 
     public function add_controls( $wp_customize ) {
 
-        // Logo
-        $wp_customize->add_control( new WP_Customize_Image_Control(
-            $wp_customize,
-            'CDR_field_dark_logo',
-            [
-                'label'    => __( 'Logo escuro', 'iro' ),
-                'section'  => 'title_tagline',
-                'settings' => 'CDR_field_dark_logo'
-            ]
-        ) );
-
-        // Exams
-        $wp_customize->add_control( 'CDR_exams_field_description',
-            [
-                'label'    => __( 'Descrição', 'iro' ),
-                'section'  => 'CDR_exams_section',
-                'settings' => 'CDR_exams_field_description',
-                'type'     => 'textarea'
-            ]
-        );
-
-        $wp_customize->add_control( 'CDR_exams_field_exam_results',
-            [
-                'label'    => __( 'Url resultados de exames', 'iro' ),
-                'section'  => 'CDR_exams_section',
-                'settings' => 'CDR_exams_field_exam_results',
-                'type'     => 'url'
-            ]
-        );
-
-        $wp_customize->add_control( 'CDR_exams_field_exams_offered',
-            [
-                'label'    => __( 'Url exames oferecidos', 'iro' ),
-                'section'  => 'CDR_exams_section',
-                'settings' => 'CDR_exams_field_exams_offered',
-                'type'     => 'url'
-            ]
-        );
-
-        $wp_customize->add_control( new WP_Customize_Image_Control(
-            $wp_customize,
-            'CDR_exams_field_image',
-            [
-                'label'    => __( 'Imagem', 'iro' ),
-                'section'  => 'CDR_exams_section',
-                'settings' => 'CDR_exams_field_image'
-            ]
-        ) );
-
-        // Franchises
-        $wp_customize->add_control( 'CDR_franchises_field_title',
-            [
-                'label'    => __( 'Título', 'iro' ),
-                'section'  => 'CDR_franchises_section',
-                'settings' => 'CDR_franchises_field_title',
-                'type'     => 'text'
-            ]
-        );
-
-        $wp_customize->add_control( 'CDR_franchises_field_description',
-            [
-                'label'    => __( 'Descrição', 'iro' ),
-                'section'  => 'CDR_franchises_section',
-                'settings' => 'CDR_franchises_field_description',
-                'type'     => 'textarea'
-            ]
-        );
-
-        $wp_customize->add_control( 'CDR_franchises_field_know_more',
-            [
-                'label'    => __( 'Url', 'iro' ),
-                'section'  => 'CDR_franchises_section',
-                'settings' => 'CDR_franchises_field_know_more',
-                'type'     => 'url'
-            ]
-        );
-
-        $wp_customize->add_control( new WP_Customize_Image_Control(
-            $wp_customize,
-            'CDR_franchises_field_image',
-            [
-                'label'    => __( 'Imagem', 'iro' ),
-                'section'  => 'CDR_franchises_section',
-                'settings' => 'CDR_franchises_field_image'
-            ]
-        ) );
-
-        // Reports
-        $wp_customize->add_control( 'CDR_reports_field_title',
-            [
-                'label'    => __( 'Título', 'iro' ),
-                'section'  => 'CDR_reports_section',
-                'settings' => 'CDR_reports_field_title',
-                'type'     => 'text'
-            ]
-        );
-
-        $wp_customize->add_control( 'CDR_reports_field_description',
-            [
-                'label'    => __( 'Descrição', 'iro' ),
-                'section'  => 'CDR_reports_section',
-                'settings' => 'CDR_reports_field_description',
-                'type'     => 'textarea'
-            ]
-        );
-
-        $wp_customize->add_control( 'CDR_reports_field_know_more',
-            [
-                'label'    => __( 'Url', 'iro' ),
-                'section'  => 'CDR_reports_section',
-                'settings' => 'CDR_reports_field_know_more',
-                'type'     => 'url'
-            ]
-        );
-
-        $wp_customize->add_control( new WP_Customize_Image_Control(
-            $wp_customize,
-            'CDR_reports_field_image',
-            [
-                'label'    => __( 'Imagem', 'iro' ),
-                'section'  => 'CDR_reports_section',
-                'settings' => 'CDR_reports_field_image'
-            ]
-        ) );
-
-        // Where
-        $wp_customize->add_control( 'CDR_field_map_iframe',
-            [
-                'label'    => __( 'Iframe do mapa', 'iro' ),
-                'section'  => 'CDR_where_section',
-                'settings' => 'CDR_field_map_iframe',
-                'type'     => 'textarea'
-            ]
-        );
-
-        // Informations
-        $wp_customize->add_control( 'CDR_field_phone',
-            [
-                'label'    => __( 'Telefone', 'iro' ),
-                'section'  => 'CDR_informations_section',
-                'settings' => 'CDR_field_phone',
-                'type'     => 'text'
-            ]
-        );
-
-        $wp_customize->add_control( 'CDR_field_address',
-            [
-                'label'    => __( 'Endereço', 'iro' ),
-                'section'  => 'CDR_informations_section',
-                'settings' => 'CDR_field_address',
-                'type'     => 'textarea'
-            ]
-        );
-
-        $wp_customize->add_control( 'CDR_field_email',
-            [
-                'label'    => __( 'E-mail', 'iro' ),
-                'section'  => 'CDR_informations_section',
-                'settings' => 'CDR_field_email',
-                'type'     => 'email'
-            ]
-        );
-
-        $wp_customize->add_control( 'CDR_field_privacy_email',
-            [
-                'label'    => __( 'E-mail de Privacidade', 'iro' ),
-                'section'  => 'CDR_informations_section',
-                'settings' => 'CDR_field_privacy_email',
-                'type'     => 'email'
-            ]
-        );
-
-        $options = [
-            'week',
-            'weekend'
-        ];
-
-        foreach ( $options as $option ) {
-            // Week and Weekend
-            $wp_customize->add_control( 'CDR_field_' . $option . '_attendance',
-                [
-                    'label'    => __( 'Horário de Atendimento', 'iro' ),
-                    'section'  => 'CDR_' . $option . '_section',
-                    'settings' => 'CDR_field_' . $option . '_attendance',
-                    'type'     => 'text'
-                ]
-            );
-
-            $wp_customize->add_control( 'CDR_field_' . $option . '_x_ray',
-                [
-                    'label'    => __( 'Raio-X', 'iro' ),
-                    'section'  => 'CDR_' . $option . '_section',
-                    'settings' => 'CDR_field_' . $option . '_x_ray',
-                    'type'     => 'text'
-                ]
-            );
-
-            $wp_customize->add_control( 'CDR_field_' . $option . '_documentations',
-                [
-                    'label'    => __( 'Documentações', 'iro' ),
-                    'section'  => 'CDR_' . $option . '_section',
-                    'settings' => 'CDR_field_' . $option . '_documentations',
-                    'type'     => 'text'
-                ]
-            );
-        }
-
         // Networks
-        $wp_customize->add_control( 'CDR_field_whatsapp',
+        $wp_customize->add_control( 'cm_field_whatsapp',
             [
-                'label'    => __( 'WhatsApp', 'iro' ),
-                'section'  => 'CDR_networks_section',
-                'settings' => 'CDR_field_whatsapp',
+                'label'    => __( 'WhatsApp', 'cm' ),
+                'section'  => 'cm_socials_section',
+                'settings' => 'cm_field_whatsapp',
                 'type'     => 'text'
             ]
         );
 
-        $wp_customize->add_control( 'CDR_field_facebook',
+        $wp_customize->add_control( 'cm_field_facebook',
             [
-                'label'    => __( 'Facebook', 'iro' ),
-                'section'  => 'CDR_networks_section',
-                'settings' => 'CDR_field_facebook',
+                'label'    => __( 'Facebook', 'cm' ),
+                'section'  => 'cm_socials_section',
+                'settings' => 'cm_field_facebook',
                 'type'     => 'text'
             ]
         );
 
-        $wp_customize->add_control( 'CDR_field_instagram',
+        $wp_customize->add_control( 'cm_field_instagram',
             [
-                'label'    => __( 'Instagram', 'iro' ),
-                'section'  => 'CDR_networks_section',
-                'settings' => 'CDR_field_instagram',
+                'label'    => __( 'Instagram', 'cm' ),
+                'section'  => 'cm_socials_section',
+                'settings' => 'cm_field_instagram',
                 'type'     => 'text'
             ]
         );
 
-        $wp_customize->add_control( 'CDR_field_youtube',
+        $wp_customize->add_control( 'cm_field_youtube',
             [
-                'label'    => __( 'Youtube', 'iro' ),
-                'section'  => 'CDR_networks_section',
-                'settings' => 'CDR_field_youtube',
+                'label'    => __( 'Youtube', 'cm' ),
+                'section'  => 'cm_socials_section',
+                'settings' => 'cm_field_youtube',
                 'type'     => 'text'
             ]
         );
 
-        // Franchise
-        $wp_customize->add_control(
-            new WP_Customize_Upload_Control(
-                $wp_customize,
-                'CDR_field_contract',
-                [
-                    'label'    => __( 'Termo de Adesão', 'iro' ),
-                    'section'  => 'CDR_franchise_section',
-                    'settings' => 'CDR_field_contract'
-                ] )
+        $wp_customize->add_control( 'cm_field_twitter',
+            [
+                'label'    => __( 'Twitter', 'cm' ),
+                'section'  => 'cm_socials_section',
+                'settings' => 'cm_field_twitter',
+                'type'     => 'text'
+            ]
         );
+
+        // Options
+        $wp_customize->add_control( new WP_Customize_Image_Control(
+            $wp_customize,
+            'cm_field_options_image',
+            [
+                'label'    => __( 'Imagem', 'cm' ),
+                'section'  => 'cm_options_section',
+                'settings' => 'cm_field_options_image'
+            ]
+        ) );
+
+        // Materials
+        $wp_customize->add_control( new WP_Customize_Image_Control(
+            $wp_customize,
+            'cm_field_materials_image',
+            [
+                'label'    => __( 'Imagem', 'cm' ),
+                'section'  => 'cm_materials_section',
+                'settings' => 'cm_field_materials_image'
+            ]
+        ) );
+
+        $wp_customize->add_control( new WP_Customize_Image_Control(
+            $wp_customize,
+            'cm_field_materials_multimedia',
+            [
+                'label'    => __( 'Multimídia', 'cm' ),
+                'section'  => 'cm_materials_section',
+                'settings' => 'cm_field_materials_multimedia'
+            ]
+        ) );
+
+        $wp_customize->add_control( new WP_Customize_Image_Control(
+            $wp_customize,
+            'cm_field_materials_mockup',
+            [
+                'label'    => __( 'Mockup', 'cm' ),
+                'section'  => 'cm_materials_section',
+                'settings' => 'cm_field_materials_mockup'
+            ]
+        ) );
+
+        $wp_customize->add_control( new WP_Customize_Image_Control(
+            $wp_customize,
+            'cm_field_materials_videos',
+            [
+                'label'    => __( 'Vídeos', 'cm' ),
+                'section'  => 'cm_materials_section',
+                'settings' => 'cm_field_materials_videos'
+            ]
+        ) );
+
+        $wp_customize->add_control( new WP_Customize_Image_Control(
+            $wp_customize,
+            'cm_field_materials_audios',
+            [
+                'label'    => __( 'Áudios', 'cm' ),
+                'section'  => 'cm_materials_section',
+                'settings' => 'cm_field_materials_audios'
+            ]
+        ) );
 
         // About
         $wp_customize->add_control( new WP_Customize_Image_Control(
             $wp_customize,
-            'CDR_field_about_image',
+            'cm_field_about_background',
             [
-                'label'    => __( 'Imagem', 'iro' ),
-                'section'  => 'CDR_about_section',
-                'settings' => 'CDR_field_about_image'
+                'label'    => __( 'Imagem de fundo', 'cm' ),
+                'section'  => 'cm_about_section',
+                'settings' => 'cm_field_about_background'
             ]
         ) );
 
-        $wp_customize->add_control( 'CDR_field_about_description',
+        $wp_customize->add_control( new WP_Customize_Image_Control(
+            $wp_customize,
+            'cm_field_about_image',
             [
-                'label'    => __( 'Descrição', 'iro' ),
-                'section'  => 'CDR_about_section',
-                'settings' => 'CDR_field_about_description',
-                'type'     => 'textarea'
+                'label'    => __( 'Imagem', 'cm' ),
+                'section'  => 'cm_about_section',
+                'settings' => 'cm_field_about_image'
             ]
-        );
+        ) );
 
-        $wp_customize->add_control( 'CDR_field_about_url',
+        // Pages
+        $wp_customize->add_control( new WP_Customize_Image_Control(
+            $wp_customize,
+            'cm_field_pages_title_image',
             [
-                'label'    => __( 'Url', 'iro' ),
-                'section'  => 'CDR_about_section',
-                'settings' => 'CDR_field_about_url',
-                'type'     => 'url'
+                'label'    => __( 'Imagem', 'cm' ),
+                'section'  => 'cm_pages_section',
+                'settings' => 'cm_field_pages_title_image'
             ]
-        );
+        ) );
 
-        // SEO
-        $wp_customize->add_control( 'CDR_field_seo_google_analytics',
+        // Downloads
+        $wp_customize->add_control( new WP_Customize_Upload_Control(
+            $wp_customize,
+            'cm_field_downloads_sticker',
             [
-                'label'    => __( 'Google Analytics', 'iro' ),
-                'section'  => 'CDR_seo_section',
-                'settings' => 'CDR_field_seo_google_analytics',
-                'type'     => 'text'
+                'label'    => __( 'Adeviso', 'cm' ),
+                'section'  => 'cm_downloads_section',
+                'settings' => 'cm_field_downloads_sticker'
             ]
-        );
+        ) );
 
-        $wp_customize->add_control( 'CDR_field_seo_pixel_facebook',
+        $wp_customize->add_control( new WP_Customize_Upload_Control(
+            $wp_customize,
+            'cm_field_downloads_informativo_front',
             [
-                'label'    => __( 'Píxel Facebook', 'iro' ),
-                'section'  => 'CDR_seo_section',
-                'settings' => 'CDR_field_seo_pixel_facebook',
-                'type'     => 'text'
+                'label'    => __( 'Informativo frente', 'cm' ),
+                'section'  => 'cm_downloads_section',
+                'settings' => 'cm_field_downloads_informativo_front'
             ]
-        );
+        ) );
 
-        // Cookies
-        $wp_customize->add_control( 'CDR_field_cookies_active',
+        $wp_customize->add_control( new WP_Customize_Upload_Control(
+            $wp_customize,
+            'cm_field_downloads_informativo_verse',
             [
-                'label'    => __( 'Ativar', 'iro' ),
-                'section'  => 'CDR_cookies_section',
-                'settings' => 'CDR_field_cookies_active',
-                'type'     => 'checkbox'
+                'label'    => __( 'Informativo verso', 'cm' ),
+                'section'  => 'cm_downloads_section',
+                'settings' => 'cm_field_downloads_informativo_verse'
             ]
-        );
+        ) );
 
-        // Cookies
-        $wp_customize->add_control( 'CDR_field_cookies_message',
+        $wp_customize->add_control( new WP_Customize_Image_Control(
+            $wp_customize,
+            'cm_field_downloads_oficial_photo',
             [
-                'label'    => __( 'Mensagem', 'iro' ),
-                'section'  => 'CDR_cookies_section',
-                'settings' => 'CDR_field_cookies_message',
-                'type'     => 'textarea'
+                'label'    => __( 'Foto oficial da campanha', 'cm' ),
+                'section'  => 'cm_downloads_section',
+                'settings' => 'cm_field_downloads_oficial_photo'
             ]
-        );
+        ) );
 
-        $wp_customize->add_control( 'CDR_field_cookies_url',
+        $wp_customize->add_control( new WP_Customize_Image_Control(
+            $wp_customize,
+            'cm_field_downloads_photo_oficial_two',
             [
-                'label'    => __( 'URL', 'iro' ),
-                'section'  => 'CDR_cookies_section',
-                'settings' => 'CDR_field_cookies_url',
-                'type'     => 'url'
+                'label'    => __( 'Foto oficial 2', 'cm' ),
+                'section'  => 'cm_downloads_section',
+                'settings' => 'cm_field_downloads_photo_oficial_two'
             ]
-        );
+        ) );
 
-        // Maintenance
-        $wp_customize->add_control( 'CDR_field_maintenance_active',
+        $wp_customize->add_control( new WP_Customize_Image_Control(
+            $wp_customize,
+            'cm_field_downloads_logo_one',
             [
-                'label'    => __( 'Ativar', 'iro' ),
-                'section'  => 'CDR_maintenance_section',
-                'settings' => 'CDR_field_maintenance_active',
-                'type'     => 'checkbox'
+                'label'    => __( 'Logo 1', 'cm' ),
+                'section'  => 'cm_downloads_section',
+                'settings' => 'cm_field_downloads_logo_one'
             ]
-        );
+        ) );
 
-        $wp_customize->add_control( 'CDR_field_maintenance_title',
+        $wp_customize->add_control( new WP_Customize_Image_Control(
+            $wp_customize,
+            'cm_field_downloads_logo_two',
             [
-                'label'    => __( 'Título', 'iro' ),
-                'section'  => 'CDR_maintenance_section',
-                'settings' => 'CDR_field_maintenance_title',
-                'type'     => 'text'
+                'label'    => __( 'Logo 2', 'cm' ),
+                'section'  => 'cm_downloads_section',
+                'settings' => 'cm_field_downloads_logo_two'
             ]
-        );
+        ) );
 
-        $wp_customize->add_control( 'CDR_field_maintenance_description',
+        $wp_customize->add_control( new WP_Customize_Image_Control(
+            $wp_customize,
+            'cm_field_downloads_logo_horizontal_shadow',
             [
-                'label'    => __( 'Descriçao', 'iro' ),
-                'section'  => 'CDR_maintenance_section',
-                'settings' => 'CDR_field_maintenance_description',
-                'type'     => 'textarea'
+                'label'    => __( 'Logo horizontal com sombra', 'cm' ),
+                'section'  => 'cm_downloads_section',
+                'settings' => 'cm_field_downloads_logo_horizontal_shadow'
             ]
-        );
+        ) );
+
+        $wp_customize->add_control( new WP_Customize_Image_Control(
+            $wp_customize,
+            'cm_field_downloads_logo_vertical_shadow',
+            [
+                'label'    => __( 'Logo vertical com sombra', 'cm' ),
+                'section'  => 'cm_downloads_section',
+                'settings' => 'cm_field_downloads_logo_vertical_shadow'
+            ]
+        ) );
+
+        // Banner
+        $wp_customize->add_control( new WP_Customize_Image_Control(
+            $wp_customize,
+            'cm_field_banner_logo_ub',
+            [
+                'label'    => __( 'Logo União Brasil', 'cm' ),
+                'section'  => 'cm_banners_section',
+                'settings' => 'cm_field_banner_logo_ub'
+            ]
+        ) );
+
     }
 
 }

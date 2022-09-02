@@ -1,24 +1,24 @@
 <?php
     /**
-     * Footer template
+     * Footer Copyright.
      *
-     * @package cdr
+     * @package cm
      */
 ?>
-</div>
-<footer class="site-footer pt-5 pb-2">
-  <?php
-      get_template_part( 'template-parts/footer/content', 'widgets' );
-      get_template_part( 'template-parts/footer/content', 'copyright' );
-  ?>
+
+<footer class="site-footer pt-3 pb-3 shadow-4-soft">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <?php get_template_part( 'template-parts/footer/content', 'footer' );?>
+      </div>
+    </div>
+  </div>
+
+
 </footer>
-
-<?php
-
-    wp_footer();
-?>
-
-
+<?php wp_footer();?>
+</div>
 </body>
 
 </html>

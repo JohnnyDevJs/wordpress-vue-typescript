@@ -1,0 +1,30 @@
+.page-o-que-defendo
+  background-color: $light
+
+  .page-content
+    p
+      font-size: 1.2rem
+
+    ul
+      margin: 0
+      list-style: none
+      padding: 0
+
+      display: flex
+      flex-wrap: wrap
+
+      li
+        width: 50%
+        font-size: 1.2rem
+
+        display: flex
+
+        &::before
+          content: '✓'
+          color: $info
+          margin-right: .3rem
+
+          display: flex
+
+        &:nth-child(n+3)
+          padding-top: 1rem

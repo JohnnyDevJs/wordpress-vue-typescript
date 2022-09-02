@@ -1,0 +1,11 @@
+@import "bootstrap/scss/functions"
+@import "bootstrap/scss/variables"
+@import "bootstrap/scss/mixins"
+
+$all-colors: () !default
+$all-colors: map-merge(("blue-800": #283593), $all-colors)
+
+.text-blue-800
+  color: map-get($all-colors, "blue-800")
+
+$yellow: #fbc707 !important

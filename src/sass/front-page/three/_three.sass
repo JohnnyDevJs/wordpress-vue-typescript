@@ -1,0 +1,53 @@
+#three
+  +background-gradient(90deg, $info, 51%, $blue-900, 50%)
+
+  figure.figure-multimedia
+    top: 0
+    right: 0
+
+    img
+      object-fit: contain
+      object-position: right
+
+  figure.figure-mockup,
+  figure.figure-videos
+    &::before
+      content: ''
+      background-color: $info
+      position: absolute
+      width: 100%
+      height: 100%
+      mix-blend-mode: multiply
+
+    img
+      mix-blend-mode: screen
+      opacity: .25
+
+  h4
+    &:first-child
+      letter-spacing: .4rem
+
+  h5
+    &:first-child
+      line-height: 0.4rem
+
+  .left
+    h1
+      line-height: 2.5rem
+
+  .right
+    .multimedia-title
+      background-color: $blue-900
+
+    .icon
+      border-radius: 0.625rem
+
+    .icon,
+    h4,
+    p,
+    a
+      z-index: 1
+
+  .avatar
+    img
+      +rotate(5deg)

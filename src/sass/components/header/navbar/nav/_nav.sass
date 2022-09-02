@@ -1,0 +1,27 @@
+.navbar-nav
+  li + li
+    margin-left: 1.5rem
+
+  li
+    a
+      font-weight: 700
+
+      &:hover
+        color: $warning
+
+    &:last-child
+      &:not(.dropdown-menu li)
+        a
+          color: $white
+
+  li.dropdown
+    a
+      &.show
+        color: $info
+
+      ul
+        li
+          .dropdown-item
+            &:hover,
+            &:focus
+              background-color: transparent !important

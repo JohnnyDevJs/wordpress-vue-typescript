@@ -2,10 +2,10 @@
 /**
  * Autoloader file for theme.
  *
- * @package cdr
+ * @package cvc
  */
 
-namespace CDR_THEME\Inc\Helpers;
+namespace CM_THEME\Inc\Helpers;
 
 /**
  * Auto loader function.
@@ -15,7 +15,7 @@ namespace CDR_THEME\Inc\Helpers;
  */
 function autoloader( $resource = '' ) {
     $resource_path = false;
-    $namespace_root = 'CDR_THEME\\';
+    $namespace_root = 'CM_THEME\\';
     $resource = trim( $resource, '\\' );
 
     if ( empty( $resource ) || strpos( $resource, '\\' ) === false || strpos( $resource, $namespace_root ) !== 0 ) {
@@ -46,32 +46,32 @@ function autoloader( $resource = '' ) {
     if ( 'inc' === $path[0] ) {
 
         switch ( $path[1] ) {
-        case 'traits':
-            $directory = 'traits';
-            $file_name = sprintf( 'trait-%s', trim( strtolower( $path[2] ) ) );
-            break;
+            case 'traits':
+                $directory = 'traits';
+                $file_name = sprintf( 'trait-%s', trim( strtolower( $path[2] ) ) );
+                break;
 
-        case 'widgets':
-        case 'blocks':
+            case 'widgets':
+            case 'blocks':
 
 // phpcs:ignore PSR2.ControlStructures.SwitchDeclaration.TerminatingComment
-            /**
-             * If there is class name provided for specific directory then load that.
-             * otherwise find in inc/ directory.
-             */
-            if ( !  empty( $path[2] ) ) {
-                $directory = sprintf( 'classes/%s', $path[1] );
-                $file_name = sprintf( 'class-%s', trim( strtolower( $path[2] ) ) );
-                break;
-            }
+                /**
+                 * If there is class name provided for specific directory then load that.
+                 * otherwise find in inc/ directory.
+                 */
+                if ( !  empty( $path[2] ) ) {
+                    $directory = sprintf( 'classes/%s', $path[1] );
+                    $file_name = sprintf( 'class-%s', trim( strtolower( $path[2] ) ) );
+                    break;
+                }
 
-        default:
-            $directory = 'classes';
-            $file_name = sprintf( 'class-%s', trim( strtolower( $path[1] ) ) );
-            break;
+            default:
+                $directory = 'classes';
+                $file_name = sprintf( 'class-%s', trim( strtolower( $path[1] ) ) );
+                break;
         }
 
-        $resource_path = sprintf( '%s/inc/%s/%s.php', untrailingslashit( CDR_DIR_PATH ), $directory, $file_name );
+        $resource_path = sprintf( '%s/inc/%s/%s.php', untrailingslashit( CM_DIR_PATH ), $directory, $file_name );
 
     }
 
@@ -87,4 +87,4 @@ function autoloader( $resource = '' ) {
 
 }
 
-spl_autoload_register( '\CDR_THEME\Inc\Helpers\autoloader' );
+spl_autoload_register( '\CM_THEME\Inc\Helpers\autoloader' );

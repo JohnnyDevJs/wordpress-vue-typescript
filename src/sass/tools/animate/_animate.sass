@@ -1,0 +1,47 @@
+$effects: fadeInUp, fadeInUpTR, fadeInRight
+
+@each $effect, $count in $effects
+
+  @for $i from 1 through 100
+    .animate-delay-#{$i}
+
+      @if $i > 9
+        animation-delay: #{'1.'}#{$i}#{'s'} !important
+      @else
+        animation-delay: #{'0.'}#{$i}#{'s'} !important
+
+  @for $i from 1 through 9
+    .animate-#{$effect}-#{$i}
+      animation-name: #{$effect}
+      animation-duration: #{'0.'}#{$i}#{'s'}
+      animation-fill-mode: forwards
+
+    @keyframes #{$effect}
+      0%
+        opacity: 0
+        visibility: hidden
+
+        @if $effect == 'fadeInUp'
+          +translate(Y, 1rem)
+
+        @if $effect == 'fadeInRight'
+          +translate(X, -1rem)
+
+        @if $effect == 'fadeInUpTR'
+          transform: translateY(1rem) rotate(-20deg)
+
+      100%
+        @if $effect == 'fadeInUp'
+          +translate(Y, 0)
+          opacity: 1
+          visibility: visible
+
+        @else
+          +translate(X, 0)
+          opacity: 1
+          visibility: visible
+
+        @if $effect == 'fadeInUpTR'
+          transform: translateY(0) rotate(-20deg)
+          opacity: 1
+          visibility: visible

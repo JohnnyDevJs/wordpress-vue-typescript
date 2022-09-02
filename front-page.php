@@ -1,5 +1,15 @@
-<?php get_header();?>
+<?php
+    /**
+     * Front Page Template.
+     *
+     * @package cm
+     */
+    get_header();
 
-<div id="app"></div>
+    get_template_part( 'template-parts/front-page/content', 'front-page' );
 
-<?php get_footer();?>
+?>
+
+
+<?php
+get_footer();

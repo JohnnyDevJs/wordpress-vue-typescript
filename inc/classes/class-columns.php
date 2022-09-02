@@ -2,12 +2,12 @@
 /**
  * Register Columns
  *
- * @package cdr
+ * @package cm
  */
 
-namespace CDR_THEME\Inc;
+namespace CM_THEME\Inc;
 
-use CDR_THEME\Inc\Traits\Singleton;
+use CM_THEME\Inc\Traits\Singleton;
 
 class Columns {
 
@@ -63,26 +63,26 @@ class Columns {
 
         switch ( $column ) {
 
-        case 'content':
-            $content = get_the_content();
-            echo $content;
-            break;
+            case 'content':
+                $content = get_the_content();
+                echo $content;
+                break;
 
-        case 'thumbnail':
+            case 'thumbnail':
 
-            if ( has_post_thumbnail() ):
-                echo get_the_post_thumbnail( $post_id, [100, 100] );
-            endif;
-            break;
+                if ( has_post_thumbnail() ):
+                    echo get_the_post_thumbnail( $post_id, [100, 100] );
+                endif;
+                break;
 
-        case 'url':
-            echo get_post_meta( $post_id, '_url', true );
-            //echo $url;
+            case 'url':
+                echo get_post_meta( $post_id, '_url', true );
+                //echo $url;
 
-            break;
+                break;
 
-        default:
-            break;
+            default:
+                break;
         }
 
     }
@@ -107,27 +107,27 @@ class Columns {
 
         switch ( $column ) {
 
-        case 'content':
-            $content = the_content();
-            echo $content;
-            break;
+            case 'content':
+                $content = the_content();
+                echo $content;
+                break;
 
-        case 'exibition':
-            $terms = get_the_terms( $post_id, 'exibition' );
+            case 'exibition':
+                $terms = get_the_terms( $post_id, 'exibition' );
 
-            if ( $terms != null ) {
+                if ( $terms != null ) {
 
-                foreach ( $terms as $term ) {
-                    echo $term->name;
-                    unset( $term );
+                    foreach ( $terms as $term ) {
+                        echo $term->name;
+                        unset( $term );
+                    }
+
                 }
 
-            }
+                break;
 
-            break;
-
-        default:
-            break;
+            default:
+                break;
         }
 
     }
@@ -152,27 +152,27 @@ class Columns {
 
         switch ( $column ) {
 
-        case 'content':
-            $content = the_content();
-            echo $content;
-            break;
+            case 'content':
+                $content = the_content();
+                echo $content;
+                break;
 
-        case 'acting':
-            $terms = get_the_terms( $post_id, 'acting' );
+            case 'acting':
+                $terms = get_the_terms( $post_id, 'acting' );
 
-            if ( $terms != null ) {
+                if ( $terms != null ) {
 
-                foreach ( $terms as $term ) {
-                    echo $term->name;
-                    unset( $term );
+                    foreach ( $terms as $term ) {
+                        echo $term->name;
+                        unset( $term );
+                    }
+
                 }
 
-            }
+                break;
 
-            break;
-
-        default:
-            break;
+            default:
+                break;
         }
 
     }
@@ -199,28 +199,28 @@ class Columns {
 
         switch ( $column ) {
 
-        case 'iframe':
-            $content = the_content();
-            echo $content;
-            break;
+            case 'iframe':
+                $content = the_content();
+                echo $content;
+                break;
 
-        case 'manager':
-            $manager = get_post_meta( $post_id, '_manager', true );
-            echo $manager;
-            break;
+            case 'manager':
+                $manager = get_post_meta( $post_id, '_manager', true );
+                echo $manager;
+                break;
 
-        case 'cro':
-            $cro = get_post_meta( $post_id, '_cro', true );
-            echo $cro;
-            break;
+            case 'cro':
+                $cro = get_post_meta( $post_id, '_cro', true );
+                echo $cro;
+                break;
 
-        case 'phone':
-            $phone = get_post_meta( $post_id, '_phone', true );
-            echo $phone;
-            break;
+            case 'phone':
+                $phone = get_post_meta( $post_id, '_phone', true );
+                echo $phone;
+                break;
 
-        default:
-            break;
+            default:
+                break;
         }
 
     }
@@ -244,13 +244,13 @@ class Columns {
 
         switch ( $column ) {
 
-        case 'content':
-            $content = the_content();
-            echo $content;
-            break;
+            case 'content':
+                $content = the_content();
+                echo $content;
+                break;
 
-        default:
-            break;
+            default:
+                break;
         }
 
     }

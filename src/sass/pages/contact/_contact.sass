@@ -1,0 +1,38 @@
+.page-contato
+  .page-content
+    .socials
+      li
+        a
+          background-color: $info
+          color: $white !important
+          width: 2rem
+          height: 2rem
+          padding: .4rem
+          border-radius: 0.625rem
+          +transition(all .4s)
+
+          &:hover
+            background-color: $warning
+
+            display: flex
+            align-items: center
+            justify-content: center
+
+      li + li
+        margin-left: .4rem
+
+    form
+      border-radius: 0.625rem
+
+    .whatsapp-icon
+      background-color: $green
+      width: 2rem
+      height: 2rem
+      border-radius: 0.625rem
+      padding: .4rem
+
+      svg
+        fill: $white
+
+    .invalid-feedback
+      position: relative

@@ -1,0 +1,36 @@
++breakpoint-max(lg)
+  .page-fotos
+    .photo-item
+      &:nth-child(n+3)
+        margin-top: 1.5rem
+
+  .single-photos
+    .portfolio-item
+      &:nth-child(n+3)
+        margin-top: 1.5rem
+
++breakpoint-max(md)
+  #photos
+    figure
+      width: 100% !important
+      height: 14rem !important
+
+  .page-fotos
+    .photo-item
+      &:nth-child(n+2)
+        margin-top: 1.5rem
+
+  .single-photos
+    .portfolio-item
+      &:nth-child(n+2)
+        margin-top: 1.5rem
+
+      .item-album-photo
+        figure
+          height: 16rem
+
++breakpoint-max(sm)
+  .single-photos
+    .item-album-photo
+      figure
+        height: 13rem !important

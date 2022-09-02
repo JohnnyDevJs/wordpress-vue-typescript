@@ -1,0 +1,29 @@
+#posts
+  h1
+    color: $blue-900
+
+  .post
+    +translate(Y, 0)
+    +transition(all .4s)
+
+    figure
+      width: 100%
+      height: 10.563rem
+
+      img
+        object-fit: cover
+
+    time
+      position: relative
+      padding-bottom: .5rem
+
+      &:before
+        content: ''
+        position: absolute
+        bottom: 0
+        width: 1.5rem
+        height: 0.188rem
+        background-color: $info
+
+    &:hover
+      +translate(Y, -.4rem)
